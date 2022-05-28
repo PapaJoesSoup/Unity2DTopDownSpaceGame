@@ -1,55 +1,56 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+namespace Assets.Scripts
 {
-
-  public Transform player;
-  private new Camera camera;
-
-  public Vector3 CamOffset;
-  public bool followEnable = true;
-  public FollowMode Mode = FollowMode.Transform;
-  public float sensitivity=1;
-  public enum FollowMode
+  public class CameraFollow : MonoBehaviour
   {
-    Bounds,
-    Transform
-  }
 
-  //Skybox Movement
-  public float skyboxRotateSpeed = 5f;
+    public Transform Player;
+    private Camera _camera;
 
-  // Zoom Feature
-  public bool zoomEnable = true;
-  public float zoomSpeed = 30;
-  /// <summary>
-  /// Smaller is closer (Zoom in)
-  /// </summary>
-  public float maxZoom = 5;
-  /// <summary>
-  /// Larger is smaller (Zoom Out)
-  /// </summary>
-  public float minZoom = 40;
-  private float targetZoom = 40;
-  private float zoomPosition;
+    public Vector3 CamOffset;
+    public bool FollowEnable = true;
+    public FollowMode Mode = FollowMode.Transform;
+    public float Sensitivity=1;
+    public enum FollowMode
+    {
+      Bounds,
+      Transform
+    }
+
+    //SkyBox Movement
+    public float SkyBoxRotateSpeed = 5f;
+
+    // Zoom Feature
+    public bool ZoomEnable = true;
+    public float ZoomSpeed = 30;
+    /// <summary>
+    /// Smaller is closer (Zoom in)
+    /// </summary>
+    public float MaxZoom = 5;
+    /// <summary>
+    /// Larger is smaller (Zoom Out)
+    /// </summary>
+    public float MinZoom = 40;
+    private float _targetZoom = 40;
+    private float _zoomPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-      camera = GetComponent<Camera>();
+      _camera = GetComponent<Camera>();
+      Player = GameObject.Find("Ship").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
       //RotateSkybox();
-      if (zoomEnable)
+      if (ZoomEnable)
       {
         CameraZoom();
       }
-      if (!followEnable) return;
+      if (!FollowEnable) return;
       switch (Mode)
       {
         case FollowMode.Bounds:
@@ -65,7 +66,7 @@ public class CameraFollow : MonoBehaviour
     void FollowTransform()
     {
       // Camera follows the player with specified offset position
-      transform.position = new Vector3 (player.position.x + CamOffset.x, player.position.y + CamOffset.y, transform.position.z + CamOffset.z); 
+      transform.position = new Vector3 (Player.position.x + CamOffset.x, Player.position.y + CamOffset.y, transform.position.z + CamOffset.z); 
 
     }
 
@@ -73,8 +74,8 @@ public class CameraFollow : MonoBehaviour
     {
       // Camera follows the player with a shifting of the camera by window frame
       Bounds orthoBounds = OrthographicBounds();
-     if (orthoBounds.Contains(player.position)) return;
-      transform.position = new Vector3 (player.position.x + CamOffset.x, player.position.y + CamOffset.y, transform.position.z + CamOffset.z);
+      if (orthoBounds.Contains(Player.position)) return;
+      transform.position = new Vector3 (Player.position.x + CamOffset.x, Player.position.y + CamOffset.y, transform.position.z + CamOffset.z);
     }
 
     public Bounds OrthographicBounds()
@@ -82,26 +83,27 @@ public class CameraFollow : MonoBehaviour
       // Returns the bounds of the screen - 10%,
       // so we can see the vessel while switching the camera position.
       float screenAspect = (float)Screen.width / (float)Screen.height;
-      float cameraHeight = camera.orthographicSize * 2;
+      float cameraHeight = _camera.orthographicSize * 2;
       // In a 2D game, setting Z to a high value ensure that it can accept any camera z position.
       Bounds bounds = new Bounds(
-        camera.transform.position,
+        _camera.transform.position,
         new Vector3(cameraHeight * screenAspect * .9f, cameraHeight * .9f, 99f));
       return bounds;
     }
 
     public void CameraZoom()
     {
-      targetZoom -= Input.mouseScrollDelta.y * sensitivity;
-      targetZoom = Mathf.Clamp(targetZoom, maxZoom, minZoom);
-      float newSize = Mathf.MoveTowards(camera.orthographicSize, targetZoom, zoomSpeed * Time.deltaTime);
-      camera.orthographicSize = newSize;
+      _targetZoom -= Input.mouseScrollDelta.y * Sensitivity;
+      _targetZoom = Mathf.Clamp(_targetZoom, MaxZoom, MinZoom);
+      float newSize = Mathf.MoveTowards(_camera.orthographicSize, _targetZoom, ZoomSpeed * Time.deltaTime);
+      _camera.orthographicSize = newSize;
 
     }
 
     void RotateSkybox()
     {
-      RenderSettings.skybox.SetFloat("_Rotation", Time.time * skyboxRotateSpeed);
+      RenderSettings.skybox.SetFloat("_Rotation", Time.time * SkyBoxRotateSpeed);
     }
 
+  }
 }
