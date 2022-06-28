@@ -9,6 +9,7 @@ namespace Assets.Scripts
 
     #region Properties
     // this makes the class a singleton
+    [Header("Object Pool Settings")]
     public static ObjectPool Instance;
 
     // Using Dictionaries to allow for adding prefabs as needed and making the class more generic.
@@ -23,7 +24,7 @@ namespace Assets.Scripts
     private Dictionary<PoolType, int> _poolCount = new();
 
     //This is where we store all of our pooled prefab objects.
-    private Dictionary<PoolType, List<GameObject>> _pools = new();
+    internal Dictionary<PoolType, List<GameObject>> Pools = new();
     #endregion Properties
 
     // Awake is called when game loads
@@ -60,8 +61,8 @@ namespace Assets.Scripts
         GameObject prefabObject = prefab.Value;
         List<GameObject> pool = new();
         GameObject parent = new();
-        parent.transform.parent = gameObject.transform;
         parent.name = prefab.Key.ToString();
+        parent.transform.parent = gameObject.transform;
         for (int i = 0; i < _poolCount[poolType]; i++)
         {
           GameObject obj = Instantiate(prefabObject, parent.transform);
@@ -69,7 +70,7 @@ namespace Assets.Scripts
           pool.Add(obj);
         }
 
-        _pools.Add(poolType, pool);
+        Pools.Add(poolType, pool);
         //pool.Clear();
       }
     }
@@ -77,10 +78,10 @@ namespace Assets.Scripts
     // Method to retrieve an available object from the pool
     public GameObject GetPooledObject(PoolType type)
     {
-      for (int i = 0; i < _pools[type].Count; i++)
+      for (int i = 0; i < Pools[type].Count; i++)
       {
-        if (_pools[type][i].activeInHierarchy) continue;
-        return _pools[type][i];
+        if (Pools[type][i].activeInHierarchy) continue;
+        return Pools[type][i];
       }
       // if no object available, add one to the pool and return it.
       return null;
@@ -91,7 +92,7 @@ namespace Assets.Scripts
     {
       GameObject prefab = Instantiate(_prefabs[type], gameObject.transform);
       prefab.SetActive(false);
-      _pools[type].Add(prefab);
+      Pools[type].Add(prefab);
       return prefab;
     }
 

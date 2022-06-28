@@ -5,6 +5,7 @@ namespace Assets.Scripts
   public class AsteroidPosition : MonoBehaviour
   {
 
+    [Header("Position Settings")]
     public float MaxRadius = 1000f;
     public float MaxVelocity = 10f;
   

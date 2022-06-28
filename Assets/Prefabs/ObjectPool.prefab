@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1554301906746298641
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1554301906746298647}
+  - component: {fileID: 1554301906746298646}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1554301906746298647
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554301906746298641}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1554301906746298646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554301906746298641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33f6d914875dcb345b9823a85f737d9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PrefabObjectList:
+  - Type: 4
+    Prefab: {fileID: 8614256798006124684, guid: 2cff54a51c77fc54bb169712fbd369bc, type: 3}
+  - Type: 8
+    Prefab: {fileID: 6223853439324600661, guid: b9e6c97fe55a9b441813574fd28b3dfc, type: 3}
+  - Type: 9
+    Prefab: {fileID: 838494576956496521, guid: b9252c3437430b645a4f2e6e7bce303c, type: 3}
+  - Type: 3
+    Prefab: {fileID: 8978549853952514826, guid: 714bf040be9a6d84b9e85d5af99be8cd, type: 3}
+  - Type: 10
+    Prefab: {fileID: 8898729473027897430, guid: c97ea7442c878cc458dac989a61b9f85, type: 3}
+  - Type: 11
+    Prefab: {fileID: 2427296085684887653, guid: 30d092ccdd0dbe247900563d9d701371, type: 3}
+  - Type: 12
+    Prefab: {fileID: 8849018552622761530, guid: 9f125cbf40eac414582211290518bef2, type: 3}
+  - Type: 13
+    Prefab: {fileID: 142702594813175585, guid: 25e1085953064ce4fb61d4de8e62a983, type: 3}
+  - Type: 2
+    Prefab: {fileID: 281362257778105694, guid: 0a9cd0906cca6d3409d5492c80b2e90d, type: 3}
+  PrefabCountList:
+  - Type: 4
+    NoCount: 10
+  - Type: 8
+    NoCount: 10
+  - Type: 9
+    NoCount: 10
+  - Type: 3
+    NoCount: 10
+  - Type: 10
+    NoCount: 10
+  - Type: 11
+    NoCount: 10
+  - Type: 12
+    NoCount: 10
+  - Type: 13
+    NoCount: 10
+  - Type: 2
+    NoCount: 20

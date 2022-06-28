@@ -5,7 +5,8 @@ namespace Assets.Scripts
 {
   public class Attractor : MonoBehaviour {
 
-    const float G = 0.6674f;
+    [Header("Gravity Settings")]
+    public const float G = 0.6674f;
 
     public static List<Attractor> Attractors;
 

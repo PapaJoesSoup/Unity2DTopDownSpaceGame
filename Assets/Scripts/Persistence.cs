@@ -59,7 +59,7 @@ namespace Assets.Scripts
       _sb.AppendLine(JsonConvert.SerializeObject(PlayerSettings.Quests));
       _sb.AppendLine(JsonConvert.SerializeObject(PlayerSettings.Upgrades));
       _sb.AppendLine(JsonConvert.SerializeObject(PlayerSettings.Downgrades));
-      print(_sb.ToString());
+      //print(_sb.ToString());
     }
 
     public class PlayerSettings

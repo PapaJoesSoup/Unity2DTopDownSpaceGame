@@ -6,9 +6,15 @@ namespace Assets.Scripts
 {
   public class ProceduralAsteroids : MonoBehaviour
   {
+    [Header("Asteroid Settings")]
     public static float MaxRadius = 1000f;
     public static float MinVelocity = 0.1f;
     public static float MaxVelocity = 3f;
+
+    public static bool EnableSmallAsteroids = true;
+    public static bool EnableMedAsteroids = true;
+    public static bool EnableBigAsteroids = true;
+    public static bool EnableHugeAsteroids = true;
 
     // Start is called before the first frame update
     void Start()
@@ -30,17 +36,17 @@ namespace Assets.Scripts
     {
       if (isStartup)
       {
-        GetAsteroids(ObjectPool.PoolType.Asteroid1);
-        GetAsteroids(ObjectPool.PoolType.Asteroid2);
-        GetAsteroids(ObjectPool.PoolType.Asteroid3);
-        GetAsteroids(ObjectPool.PoolType.Asteroid4);
+        if (EnableSmallAsteroids) GetAsteroids(ObjectPool.PoolType.Asteroid1);
+        if (EnableMedAsteroids) GetAsteroids(ObjectPool.PoolType.Asteroid2);
+        if (EnableBigAsteroids) GetAsteroids(ObjectPool.PoolType.Asteroid3);
+        if (EnableHugeAsteroids) GetAsteroids(ObjectPool.PoolType.Asteroid4);
       }
       else
       {
-        GetAsteroids(ObjectPool.PoolType.Asteroid1, Random.Range(0,5));
-        GetAsteroids(ObjectPool.PoolType.Asteroid2, Random.Range(0,4));
-        GetAsteroids(ObjectPool.PoolType.Asteroid3, Random.Range(0,3));
-        GetAsteroids(ObjectPool.PoolType.Asteroid4, Random.Range(0,2));
+        if (EnableSmallAsteroids) GetAsteroids(ObjectPool.PoolType.Asteroid1, Random.Range(0,5));
+        if (EnableMedAsteroids) GetAsteroids(ObjectPool.PoolType.Asteroid2, Random.Range(0,4));
+        if (EnableBigAsteroids) GetAsteroids(ObjectPool.PoolType.Asteroid3, Random.Range(0,3));
+        if (EnableHugeAsteroids) GetAsteroids(ObjectPool.PoolType.Asteroid4, Random.Range(0,2));
       }
     }
 

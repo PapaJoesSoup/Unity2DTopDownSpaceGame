@@ -8,18 +8,26 @@ namespace Assets.Scripts
     public static SceneBounds Instance;
 
     // Map Boundaries
+    [Header("Boundary Settings")]
+    public static BoundsMode BoundaryMode = BoundsMode.Scene;
     public float SceneHeight = 1000f;
     public float SceneWidth = 1000f;
     private float _windowHeight;
     private float _windowWidth;
 
-    public static BoundsMode BoundaryMode = BoundsMode.Scene;
+    [Tooltip("Dependent objects to manage ui Visibility in Editor/game")]
+    public GameObject Canvas;
+    public GameObject CrossFade;
+
     internal static Bounds SceneBoundary;
     internal static Bounds WindowBoundary;
 
     void Awake()
     {
       if (Instance == null) Instance = this;
+      Canvas.SetActive(true);
+      CrossFade.SetActive(true);
+
     }
 
     // Start is called before the first frame update

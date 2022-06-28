@@ -4,10 +4,12 @@ namespace Assets.Scripts
 {
   public class CameraFollow : MonoBehaviour
   {
+    [Header("Dependencies Settings")]
 
     public Transform Player;
     private Camera _camera;
 
+    [Header("Behavior Settings")]
     public Vector3 CamOffset;
     public bool FollowEnable = true;
     public FollowMode Mode = FollowMode.Transform;
@@ -19,9 +21,13 @@ namespace Assets.Scripts
     }
 
     //SkyBox Movement
+    [Header("SkyBox Settings")]
+    public bool EnableSkyBoxRotation = false;
     public float SkyBoxRotateSpeed = 5f;
 
+
     // Zoom Feature
+    [Header("Zoom Settings")]
     public bool ZoomEnable = true;
     public float ZoomSpeed = 30;
     /// <summary>
@@ -45,7 +51,8 @@ namespace Assets.Scripts
     // Update is called once per frame
     void Update()
     {
-      //RotateSkybox();
+      if (EnableSkyBoxRotation) RotateSkyBox();
+
       if (ZoomEnable)
       {
         CameraZoom();
@@ -100,7 +107,7 @@ namespace Assets.Scripts
 
     }
 
-    void RotateSkybox()
+    void RotateSkyBox()
     {
       RenderSettings.skybox.SetFloat("_Rotation", Time.time * SkyBoxRotateSpeed);
     }

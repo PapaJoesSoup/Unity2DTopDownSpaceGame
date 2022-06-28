@@ -5,6 +5,7 @@ namespace Assets.Scripts
 {
   public class EnemySpawnPoints : MonoBehaviour
   {
+    [Header("SpawnPoint Settings")]
     public EnemySpawnPoints Instance;
     public int NumberOfPoints = 5;
     public GameObject SpawnPointPrefab;
